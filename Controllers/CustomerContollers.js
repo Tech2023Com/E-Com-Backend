@@ -60,7 +60,7 @@ exports.loginCustomer = (req,res)=>{
       console.log(result)
    if(result == null || result == 'undefined' )
    {
-      res.status(400).send({messgae : "User Does Not Exists"})
+      res.status(400).send({message : "User Does Not Exists"})
    }
    else{
      bcrypt.compare(password , result.password , function(err,status){
@@ -71,14 +71,10 @@ exports.loginCustomer = (req,res)=>{
       else{
       if(status == true)
       {
-         var temp  = result;
-         delete temp.password
-         console.log(temp)
-         
-         res.status(200).send({message : "User Login Successfully", data : temp})
+         res.status(200).send({message : "User Login Successfully", data : result})
       }else
       {
-         res.status(401).send({messgae  : "Incorrect Password"})
+         res.status(401).send({message  : "Incorrect Password"})
       }
       }
      }  )
