@@ -1,5 +1,6 @@
 const bcrypt  = require('bcrypt')
 const CustomerSchema =  require('../Schemas/CutomerSchema')
+const ProductsSchema = require('../Schemas/ProductsSchema')
 
 
 
@@ -81,6 +82,16 @@ exports.loginCustomer = (req,res)=>{
    }
    }).catch((err)=>{
       res.send(err)
+   })
+
+}
+
+
+exports.getProducts  =  (req,res)=>{
+   ProductsSchema.find({}).then((result)=>{
+      res.status(200).send({products :  result})
+   }).catch((err)=>{
+      res.status(400).send({message : err})
    })
 
 }
